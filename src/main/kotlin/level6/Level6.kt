@@ -1,4 +1,4 @@
-package turbo.team
+package turbo.team.level6
 
 import java.io.File
 import java.io.FileWriter
@@ -6,7 +6,6 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.pow
 import kotlin.math.sqrt
-
 
 fun isColliding(pacesX: List<Int>, pacesY: List<Int>, asteroidX: Int, asteroidY: Int): Boolean {
     fun isCollidingInternal(x: Int, y: Int, asteroidX: Int, asteroidY: Int): Boolean {
@@ -33,8 +32,8 @@ fun isColliding(pacesX: List<Int>, pacesY: List<Int>, asteroidX: Int, asteroidY:
     return false
 }
 
-
 fun isInsideTimeLimit(pacesX: List<Int>, pacesY: List<Int>, timeLimit: Int): Boolean {
+
     val timeX = calcTime(pacesX)
     val timeY = calcTime(pacesY)
 
@@ -92,7 +91,6 @@ fun calcPositions(paces: List<Int>): List<Int> {
     }
 }
 
-
 fun euclidDistance(a: Pair<Int, Int>, b: Pair<Int, Int>): Double {
     return sqrt((a.first - b.first).toDouble().pow(2) + (a.second - b.second).toDouble().pow(2))
 }
@@ -117,7 +115,6 @@ fun calcPath(wayPoints: List<Pair<Int, Int>>): Pair<List<Int>, List<Int>> {
 
     return xPath to yPath
 }
-
 
 fun solveLine(spaceStationAndTimeLimit: String, asteroid: String): Pair<List<Int>, List<Int>> {
     val (spaceStation, timeLimit) = spaceStationAndTimeLimit.split(" ")
@@ -144,7 +141,6 @@ fun solveLine(spaceStationAndTimeLimit: String, asteroid: String): Pair<List<Int
     ) {
         return directPath
     }
-
 
     asteroidOffsets.forEach { asteroidOffset ->
         val path = calcPath(
@@ -182,8 +178,7 @@ fun solveLine(spaceStationAndTimeLimit: String, asteroid: String): Pair<List<Int
     throw IllegalStateException("No path found")
 }
 
-
-fun solve6(level: Int, stage: String) {
+fun solve(level: Int, stage: String) {
     val fname = "level$level/level${level}_$stage.in"
     val lines = File(fname).readLines().drop(1)
     println(fname)
@@ -223,6 +218,6 @@ fun main() {
     // val stages = listOf("0_example")
 
     stages.forEach { stage ->
-        solve6(level, stage)
+        solve(level, stage)
     }
 }
